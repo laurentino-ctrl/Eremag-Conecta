@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<!-- Projeto: Eremag Conecta - site pra pais e professores acompanharem os alunos -->
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <!-- essa linha abaixo faz o site ficar bonito no celular -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Eremag Conecta</title>
+
+  <!-- fonte Nunito do Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <!-- liga o arquivo de estilo -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===== TOPO DO SITE ===== -->
+  <header class="topo">
+    <h1>Eremag Conecta</h1>
+
+    <div class="controles">
+      <!-- escolhe se quem está usando é pai ou professor -->
+      <label>Perfil
+        <select id="perfil">
+          <option value="pai">Responsável</option>
+          <option value="edu">Educador / ADM</option>
+        </select>
+      </label>
+
+      <!-- o JavaScript preenche essa lista com os alunos -->
+      <label>Aluno
+        <select id="aluno"></select>
+      </label>
+    </div>
+  </header>
+
+  <!-- MENU (as abas)  -->
+  <nav class="abas" id="abas">
+    <!-- data-aba diz qual seção abre quando clica -->
+    <button data-aba="visao" class="ativa">Visão geral</button>
+    <button data-aba="frequencia">Frequência</button>
+    <button data-aba="notas">Notas</button>
+    <button data-aba="metas">Metas</button>
+    <button data-aba="quadro">Quadro de avisos</button>
+  </nav>
+
+  <main>
+
+    <!-- ABA 1: VISÃO GERAL -->
+    <section id="visao" class="aba ativa">
+      <div class="cards" id="resumo"></div> <!-- cards com os números -->
+
+      <h2>Avisos aos responsáveis</h2>
+      <div id="acoes" class="acoes"></div>  <!-- botões só pro professor -->
+      <ul id="avisos" class="avisos"></ul>  <!-- lista de presença/falta -->
+
+      <div id="painelEdu"></div> <!-- tabela de comparação (só professor vê) -->
+    </section>
+
+    <!-- FREQUÊNCIA -->
+    <section id="frequencia" class="aba">
+      <h2>Faltas por mês</h2>
+      <div class="caixa" id="gMes"></div>
+
+      <h2>Faltas por dia da semana</h2>
+      <div class="caixa" id="gDia"></div>
+
+      <p class="insight" id="insightFaltas"></p>
+    </section>
+
+    <!-- NOTAS -->
+    <section id="notas" class="aba">
+      <h2>Notas por disciplina ao longo dos meses</h2>
+      <div class="caixa" id="gNotas"></div>
+      <div class="legenda" id="legenda"></div>
+
+      <h2>Média por trimestre</h2>
+      <div class="caixa"><table id="tabTri"></table></div>
+    </section>
+
+    <!-- METAS -->
+    <section id="metas" class="aba">
+      <h2>Metas de notas</h2>
+      <div id="metasNotas"></div>
+
+      <h2>Meta de faltas</h2>
+      <div id="metaFaltas"></div>
+    </section>
+
+    <!--  QUADRO DE AVISOS substituiu o calendário -->
+    <section id="quadro" class="aba">
+      <h2>Quadro de avisos da escola</h2>
+
+      <!-- filtro pra ver só um tipo de aviso -->
+      <div class="filtros" id="filtros">
+        <button data-cat="todos" class="ativa">Todos</button>
+        <button data-cat="evento">Eventos</button>
+        <button data-cat="prova">Provas</button>
+        <button data-cat="importante">Importante</button>
+      </div>
+
+      <!-- formulário pra postar aviso novo só aparece pro professor -->
+      <form id="formAviso" class="formAviso">
+        <input id="avTitulo" placeholder="Título do aviso" maxlength="40" required>
+        <textarea id="avTexto" placeholder="Escreva o aviso aqui..." maxlength="200" required></textarea>
+        <select id="avCat">
+          <option value="evento">Evento</option>
+          <option value="prova">Prova</option>
+          <option value="importante">Importante</option>
+        </select>
+        <button type="submit">Publicar aviso</button>
+      </form>
+
+      <!-- aqui ficam os post-its -->
+      <div class="mural" id="mural"></div>
+    </section>
+
+  </main>
+
+  <!-- liga o JavaScript  -->
+  <script src="script.js"></script>
+</body>
+</html>
